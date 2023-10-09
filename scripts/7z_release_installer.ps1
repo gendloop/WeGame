@@ -32,7 +32,11 @@ echo $version
 
 # rename
 $folder_path = Split-Path "$exe_file" -Parent
-7z a $env:userprofile\desktop\${project_name}-$($version[0]).$($version[1]).$($version[2])-win64.7z $exe_file -aoa
+$new_base_name = "${project_name}-$($version[0]).$($version[1]).$($version[2])-win64";
+Rename-Item -Path "$exe_file" -NewName "$new_base_name.exe"
+
+# package
+7z a $env:userprofile\desktop\$new_base_name.7z $folder_path\$new_base_name.exe -aoa
 
 
 
