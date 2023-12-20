@@ -8,8 +8,8 @@ param (
 # 检查 ..\config.txt 文件
 if((Test-Path ..\config.txt) -eq $false) {
     Write-Warning "..\config.txt doesn't exist"
-    return 
-} 
+    return
+}
 
 #  获取exe拓展名
 $extension = [System.IO.Path]::GetExtension($exe_file);
@@ -37,6 +37,3 @@ Rename-Item -Path "$exe_file" -NewName "$new_base_name.exe"
 
 # package
 7z a $env:userprofile\desktop\$new_base_name.7z $folder_path\$new_base_name.exe -aoa
-
-
-
